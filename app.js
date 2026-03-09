@@ -5,7 +5,6 @@ const path = require('path')
 let app = express();
 
 app.set('views', path.join(__dirname, 'views'))
-app.engine('handlebars', expHandlebars.engine())
 app.set('view engine', 'handlebars');
 app.use(express.static(path.join(__dirname, 'public')))
 
@@ -17,7 +16,14 @@ app.set('view engine', 'handlebars')
 
 
 app.get('/', (req, res) => {
+    res.render('home')
+})
+
+app.get('/livros', (req, res) => {
     res.render('livros')
+})
+app.get('/cadastro', (req, res) => {
+    res.render('cadastro')
 })
 
 app.listen(8000, () => {
