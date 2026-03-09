@@ -13,7 +13,7 @@ app.engine("handlebars",expHandlebars.engine({
     partialsDir: ["views/partials/"]  
 }));
 
-aplicacao.set('view engine', 'handlebars')
+app.set('view engine', 'handlebars')
 
 
 app.get('/', (req, res) => {
