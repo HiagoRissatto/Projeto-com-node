@@ -1,4 +1,21 @@
-body{
-    margin: 0;
-    padding: 0;
+:root{
+    --bg-navbar: #3B82F6;
+    --cor-principal: #1A1A1A;
+    --cor-secundaria: #FFFFFF;
+}
+.menu{
+    background-color: var(--bg-navbar);
+}
+
+.nav-link{
+    font-size: 18px;
+    color: var(--cor-secundaria);
+    text-shadow: 1px 1px 3px #FFFFFF;
+    transition: 0.3s;
+}
+
+.nav-link:hover{
+    color: var(--cor-principal);
+    transform: scale(1.05) ;
+    text-shadow: 2px 2px 6px  var(--cor-secundaria);
 }
