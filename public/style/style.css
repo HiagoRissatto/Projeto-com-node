@@ -2,11 +2,16 @@
     --bg-navbar: #3B82F6;
     --cor-principal: #1A1A1A;
     --cor-secundaria: #FFFFFF;
+    --cor-footer: #818181;
 }
 .menu{
     background-color: var(--bg-navbar);
 }
 
+.bg-footer{
+    background-color: var(--cor-footer);
+    margin-top: auto;
+}
 .nav-link{
     font-size: 18px;
     color: var(--cor-secundaria);
@@ -18,4 +23,8 @@
     color: var(--cor-principal);
     transform: scale(1.05) ;
     text-shadow: 2px 2px 6px  var(--cor-secundaria);
+}
+
+.no-resize{
+    resize: none;
 }
