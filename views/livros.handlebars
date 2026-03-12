@@ -1,0 +1,38 @@
+<div class="container mt-5">
+    <h1>Biblioteca</h1>
+    <a href="/cadastro" class="btn btn-primary">Novo Livro</a>
+    {{#if livros.length}}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Autor</th>
+                    <th>Gênero</th>
+                    <th>Sinopse</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each livros}}
+                    <tr>
+                        <td>{{this.id}}</td>
+                        <td>{{this.titulo}}</td>
+                        <td>{{this.autor}}</td>
+                        <td>{{this.ano}}</td>
+                        <td>{{this.genero}}</td>
+                        <td>{{this.sinopse}}</td>
+                        <td>
+                            <a href="/livros/editar/{{this.id}}" class="btn btn-sm btn-warning">Editar</a>
+                            <a href="/livros/deletar/{{this.id}}" class="btn btn-sm btn-danger" onclick="return confirm('Quer Mesmo apagar?')">Deletar</a>
+                        </td>
+                    </tr>
+                    {{/each}}
+            </tbody>
+        </table>
+        {{else}}
+            <div class="alert alert-info">
+                Nenhum Livro foi colocado nas prateleiras. <a href="/cadastro">Coloque um agora!</a>
+            </div>
+            {{/if}}
+</div>
