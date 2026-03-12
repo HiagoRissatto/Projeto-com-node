@@ -7,14 +7,15 @@ const livrosRoutes = require('./routes/livros')
 let app = express();
 
 app.set('views', path.join(__dirname, 'views'))
-app.set('view engine', 'handlebars');
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({ extended: true }))
 
-app.engine("handlebars",expHandlebars.engine({
-    partialsDir: ["views/partials/"]  
+app.engine('handlebars', expHandlebars.engine({
+    partialsDir: ['views/partials/'],
+helpers: {
+  formatDate: d => d ? new Date(d).toLocaleDateString('pt-BR') : ''
+},
 }));
-
 app.set('view engine', 'handlebars')
 
 

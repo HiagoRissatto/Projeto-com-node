@@ -5,7 +5,6 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Título</th>
                     <th>Autor</th>
                     <th>Gênero</th>
@@ -16,10 +15,9 @@
             <tbody>
                 {{#each livros}}
                     <tr>
-                        <td>{{this.id}}</td>
                         <td>{{this.titulo}}</td>
                         <td>{{this.autor}}</td>
-                        <td>{{this.ano}}</td>
+                        <td>{{formatDate this.ano}}</td>
                         <td>{{this.genero}}</td>
                         <td>{{this.sinopse}}</td>
                         <td>
