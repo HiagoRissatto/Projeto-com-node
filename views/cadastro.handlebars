@@ -1,17 +1,17 @@
 <div class="container mt-5">
     <h1>Cadastro de Livros</h1>
-    <form>
+    <form action="/livros" method="POST">
         <div class="mb-3">
             <label class="form-label">Título</label>
-            <input type="text" class="form-control" required>
+            <input type="text" class="form-control" name="titulo" required>
             <label class="form-label">Autor</label>
-            <input type="text" class="form-control" required>
+            <input type="text" class="form-control" name="autor" required>
             <label class="form-label">Ano de Publicação</label>
-            <input type="date" class="form-control" required>
+            <input type="date" class="form-control" name="ano" required>
              <label class="form-label">Gênero</label>
-            <input type="text" class="form-control" required>
+            <input type="text" class="form-control" name="genero" required>
              <label class="form-label">Sinopse</label>
-            <textarea class=" no-resize form-control text-decoration-none  " rows="3" required></textarea>
+            <textarea class=" no-resize form-control text-decoration-none  " name="sinopse" rows="3" required></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Cadastrar</button>
     </form>
