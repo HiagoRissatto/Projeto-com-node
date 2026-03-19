@@ -4,6 +4,10 @@
     --cor-secundaria: #FFFFFF;
     --cor-footer: #818181;
 }
+body{
+    margin: 0;
+}
+
 .menu{
     background-color: var(--bg-navbar);
 }
