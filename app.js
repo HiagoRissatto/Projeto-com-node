@@ -23,10 +23,10 @@ app.set('view engine', 'handlebars')
 app.get('/', async (req, res) => {
     try{
         const [[{ total }]] = await db.query('SELECT COUNT(*) AS total FROM livros');
-        res.render('home', {total: 0});
+        res.render('home', {total: Number(total)});
     } catch (err){
-        console.log("erro na contagem");
-    res.render('home');
+        console.log("erro na contagem", err);
+    res.render('home', {total: 0});
      }
 })
 
