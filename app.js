@@ -3,6 +3,7 @@ const expHandlebars = require('express-handlebars')
 const path = require('path')
 
 const livrosRoutes = require('./routes/livros')
+const db = require ('./db')
 
 let app = express();
 
@@ -19,8 +20,14 @@ helpers: {
 app.set('view engine', 'handlebars')
 
 
-app.get('/', (req, res) => {
-    res.render('home')
+app.get('/', async (req, res) => {
+    try{
+        const [[{ total }]] = await db.query('SELECT COUNT(*) AS total FROM livros');
+        res.render('home', {total: 0});
+    } catch (err){
+        console.log("erro na contagem");
+    res.render('home');
+     }
 })
 
 app.get('/cadastro', (req, res) => {

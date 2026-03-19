@@ -7,35 +7,42 @@
     + Novo Livro</a>
     </div>
     {{#if livros.length}}
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Título</th>
-                    <th>Autor</th>
-                    <th>Gênero</th>
-                    <th>Sinopse</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{#each livros}}
+        <div class="table-responsive">
+            <table class="table table-hover align-middle shadow-sm rounded">
+                <thead class="table-dark">
                     <tr>
-                        <td>{{this.titulo}}</td>
-                        <td>{{this.autor}}</td>
-                        <td>{{formatDate this.ano}}</td>
-                        <td>{{this.genero}}</td>
-                        <td>{{this.sinopse}}</td>
-                        <td>
-                            <a href="/livros/editar/{{this.id}}" class="btn btn-sm btn-warning">Editar</a>
-                            <a href="/livros/deletar/{{this.id}}" class="btn btn-sm btn-danger" onclick="return confirm('Quer Mesmo apagar?')">Deletar</a>
-                        </td>
+                        <th class="bi bi-book"> Título</th>
+                        <th class="bi bi-pen"> Autor</th>
+                        <th class="bi bi-calendar-event"> Ano Lançado</th>
+                        <th class="bi bi-camera-reels"> Gênero</th>
+                        <th class="bi bi-pencil-square"> Sinopse</th>
+                        <th class="text-center bi bi-gear"> Ações</th>
                     </tr>
-                    {{/each}}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {{#each livros}}
+                        <tr>
+                            <td class="fw-semibold">{{this.titulo}}</td>
+                            <td>{{this.autor}}</td>
+                            <td>{{formatDate this.ano}}</td>
+                            <td>
+                                    <span class="badge bg-secondary">{{this.genero}}</span>
+                            </td>
+                                <td class="text-muted" style="max-width: 200px; white-space: normal; word-wrap: break-word;">
+                                {{this.sinopse}}
+                            </td>
+                            <td class="text-center" style="width: 140px; white-space: nowrap">
+                                <a href="/livros/editar/{{this.id}}" class="btn btn-sm btn-warning me-1">Editar</a>
+                                <a href="/livros/deletar/{{this.id}}" class="btn btn-sm btn-danger" onclick="return confirm('Quer Mesmo apagar?')">Deletar</a>
+                            </td>
+                        </tr>
+                        {{/each}}
+                </tbody>
+            </table>
+        </div>
         {{else}}
-            <div class="alert alert-info">
-                Nenhum Livro foi colocado nas prateleiras. <a href="/cadastro">Coloque um agora!</a>
+            <div class="alert alert-info d-flex align-self-lg-center gap-2">
+                Nenhum Livro foi colocado nas prateleiras. <a href="/cadastro" class="alet-link ms-1">Coloque um agora!</a>
             </div>
             {{/if}}
 </div>
