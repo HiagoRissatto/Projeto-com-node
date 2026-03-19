@@ -1,48 +1,79 @@
 <div class="mt-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="fw-bold bi bi-journals">
-            Biblioteca
-        </h2>
-    <a href="/cadastro" class="btn btn-primary">
-    + Novo Livro</a>
+        <h2 class="fw-bold">📚 Biblioteca</h2>
+        <a href="/cadastro" class="btn btn-primary">+ Novo Livro</a>
     </div>
+
     {{#if livros.length}}
-        <div class="table-responsive">
-            <table class="table table-hover align-middle shadow-sm rounded">
-                <thead class="table-dark">
-                    <tr>
-                        <th class="bi bi-book"> Título</th>
-                        <th class="bi bi-pen"> Autor</th>
-                        <th class="bi bi-calendar-event"> Ano Lançado</th>
-                        <th class="bi bi-camera-reels"> Gênero</th>
-                        <th class="bi bi-pencil-square"> Sinopse</th>
-                        <th class="text-center bi bi-gear"> Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{#each livros}}
-                        <tr>
-                            <td class="fw-semibold">{{this.titulo}}</td>
-                            <td>{{this.autor}}</td>
-                            <td>{{formatDate this.ano}}</td>
-                            <td>
-                                    <span class="badge bg-secondary">{{this.genero}}</span>
-                            </td>
-                                <td class="text-muted" style="max-width: 200px; white-space: normal; word-wrap: break-word;">
-                                {{this.sinopse}}
-                            </td>
-                            <td class="text-center" style="width: 140px; white-space: nowrap">
-                                <a href="/livros/editar/{{this.id}}" class="btn btn-sm btn-warning me-1">Editar</a>
-                                <a href="/livros/deletar/{{this.id}}" class="btn btn-sm btn-danger" onclick="return confirm('Quer Mesmo apagar?')">Deletar</a>
-                            </td>
-                        </tr>
-                        {{/each}}
-                </tbody>
-            </table>
-        </div>
-        {{else}}
-            <div class="alert alert-info d-flex align-self-lg-center gap-2">
-                Nenhum Livro foi colocado nas prateleiras. <a href="/cadastro" class="alet-link ms-1">Coloque um agora!</a>
-            </div>
-            {{/if}}
+    <div class="table-responsive">
+        <table class="table table-hover align-middle shadow-sm rounded">
+            <thead class="table-dark">
+                <tr>
+                    <th>📖 Título</th>
+                    <th>✍️ Autor</th>
+                    <th>📅 Ano</th>
+                    <th>🎭 Gênero</th>
+                    <th>📝 Sinopse</th>
+                    <th>⭐ Avaliação</th>
+                    <th>📌 Status</th>
+                    <th class="text-center">⚙️ Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each livros}}
+                <tr>
+                    <td class="fw-semibold">{{this.titulo}}</td>
+                    <td>{{this.autor}}</td>
+                    <td>{{formatDate this.ano}}</td>
+                    <td><span class="badge bg-secondary">{{this.genero}}</span></td>
+                    <td style="max-width: 300px; white-space: normal; word-wrap: break-word;">{{this.sinopse}}</td>
+
+                    <!-- Estrelas clicáveis -->
+                    <td>
+                        <form action="/livros/estrelas/{{this.id}}" method="POST" class="d-flex gap-1">
+                            <button type="submit" name="estrelas" value="1"
+                                class="btn btn-sm p-0 border-0 bg-transparent"
+                                style="font-size: 1.2rem;">{{estrelaSelecionada this.estrelas 1}}</button>
+                            <button type="submit" name="estrelas" value="2"
+                                class="btn btn-sm p-0 border-0 bg-transparent"
+                                style="font-size: 1.2rem;">{{estrelaSelecionada this.estrelas 2}}</button>
+                            <button type="submit" name="estrelas" value="3"
+                                class="btn btn-sm p-0 border-0 bg-transparent"
+                                style="font-size: 1.2rem;">{{estrelaSelecionada this.estrelas 3}}</button>
+                            <button type="submit" name="estrelas" value="4"
+                                class="btn btn-sm p-0 border-0 bg-transparent"
+                                style="font-size: 1.2rem;">{{estrelaSelecionada this.estrelas 4}}</button>
+                            <button type="submit" name="estrelas" value="5"
+                                class="btn btn-sm p-0 border-0 bg-transparent"
+                                style="font-size: 1.2rem;">{{estrelaSelecionada this.estrelas 5}}</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/livros/status/{{this.id}}" method="POST">
+                            <select name="status" class="form-select form-select-sm" onchange="this.form.submit()">
+                                <option value="quero_ler" {{statusSelected this.status 'quero_ler' }}>🔖 Quero Ler
+                                </option>
+                                <option value="lendo" {{statusSelected this.status 'lendo' }}>📖 Lendo</option>
+                                <option value="lido" {{statusSelected this.status 'lido' }}>✅ Lido</option>
+                            </select>
+                        </form>
+                    </td>
+
+                    <td class="text-center" style="width: 140px; white-space: nowrap;">
+                        <a href="/livros/editar/{{this.id}}" class="btn btn-sm btn-warning me-1">✏️ Editar</a>
+                        <a href="/livros/deletar/{{this.id}}" class="btn btn-sm btn-danger"
+                            onclick="return confirm('Quer mesmo apagar este livro?')">🗑️ Deletar</a>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+    {{else}}
+    <div class="alert alert-info d-flex align-items-center gap-2">
+        📭 Nenhum livro nas prateleiras ainda.
+        <a href="/cadastro" class="alert-link ms-1">Adicione um agora!</a>
+    </div>
+    {{/if}}
 </div>

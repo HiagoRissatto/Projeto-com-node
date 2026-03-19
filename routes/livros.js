@@ -39,4 +39,29 @@ router.get('/deletar/:id', async (req, res, next) =>{
         next(err);
     }
 })
+
+// salvar estrelas
+router.post('/estrelas/:id', async (req, res, next) =>{
+    const { id } = req.params;
+    const { estrelas } = req.body;
+    try{
+        await db.execute('UPDATE livros SET estrelas = ? WHERE id =?', [estrelas, id] );
+        res.redirect('/livros');
+    }catch (err){
+        next(err);
+    }
+})
+
+//salvar os status
+
+router.post('/status/:id', async (req, res, next) =>{
+    const { id } = req.params;
+    const { status } = req.body;
+    try{
+        await db.execute('UPDATE livros SET status = ? WHERE id = ?', [status, id]);
+        res.redirect('/livros');
+    }catch (err){
+        next(err);
+    }
+})
 module.exports = router;
